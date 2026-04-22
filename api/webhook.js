@@ -1,3 +1,5 @@
+import { logs } from './logsStore.js';
+
 export default async function handler(req, res) {
   // GET isteği, Meta'nın (Facebook) Bot'u doğrulama adımı içindir.
   if (req.method === 'GET') {
@@ -22,8 +24,12 @@ export default async function handler(req, res) {
   else if (req.method === 'POST') {
     const body = req.body;
     
+    // Log the request to memory so the user can see it in /api/logs
+    logs.unshift({ timestamp: new Date().toISOString(), payload: body });
+    if (logs.length > 50) logs.pop(); // Keep only last 50 logs
+    
     // Yalnızca Instagram mesajlarını filtrele
-    if (body.object === 'instagram') {
+    if (body.object === 'instagram' || body.object === 'page') {
       try {
         for (const entry of body.entry) {
           for (const messaging of entry.messaging) {
