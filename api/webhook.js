@@ -9,6 +9,13 @@ export default async function handler(req, res) {
     const token = req.query['hub.verify_token'];
     const challenge = req.query['hub.challenge'];
 
+    if (req.query['view_logs'] === 'true') {
+      return res.status(200).json({
+        total_logs_saved: logs.length,
+        recent_events: logs
+      });
+    }
+
     if (mode && token) {
       if (mode === 'subscribe' && token === VERIFY_TOKEN) {
         console.log('WEBHOOK YAYINDA VE DOĞRULANDI!');
