@@ -35,13 +35,17 @@ export default async function handler(req, res) {
     logs.unshift({ timestamp: new Date().toISOString(), payload: body });
     if (logs.length > 50) logs.pop(); // Keep only last 50 logs
     
+    console.log("META WEBHOOK GELDI! Body:", JSON.stringify(body, null, 2));
+
     // Yalnızca Instagram mesajlarını filtrele
     if (body.object === 'instagram' || body.object === 'page') {
       try {
         for (const entry of body.entry) {
           for (const messaging of entry.messaging) {
+            console.log("MESSAGING ENTRY DETAYI:", JSON.stringify(messaging, null, 2));
             // Mesajın içeriği bir metin ise (fotoğraf/ses değilse) cevap ver
             if (messaging.message && messaging.message.text) {
+              console.log(`[BOT] MESAJ YAKALANDI. Gonderen: ${messaging.sender.id}, Mesaj: ${messaging.message.text}`);
               await handleIncomingMessage(messaging.sender.id, messaging.message.text);
             }
           }
