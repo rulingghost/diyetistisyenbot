@@ -86,7 +86,7 @@ async function handleIncomingMessage(senderId, text) {
 
 // Meta Sunucularına bağlanıp mesajı gönderen sistem fonksiyonu
 async function sendMessage(recipientId, text) {
-  const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN || "EAAN94Atl6rsBRSIxTFfZBbABd0eHTnLCnoK3REm0uZCbSE4V3Ssxxbv9SsDFr5KdpUnTeN2y68GGX3ZAyBqI2MjQn3irFhuWwY502wIazQkAgLbw8ier3yuX22nkOM5fZADsJcRdHBFpKCGesT8xUqnkvLSkL03l4eFDdXZBu21YARZClyvzwdQJW4lz6VquoyKcd5";
+  const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN || "EAAN94Atl6rsBRRJ2u5Fle1ZCiQ1ATfbzl5jQONFkqmZCjO8w6jc2kjTNTCaxiUz4JPa0bdRM3qLeuvzDJYtJl3dA7TDmxg5N8oOVuSsI91icjnD0SUmx1S47ko0V4A6E1SL1kClmJM8oetgqLr6Yvu5wH58EzxAPcJlrwNoNz02X9YlKxfrfyse4ATfh5PjsYT";
   
   const url = `https://graph.facebook.com/v19.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
   
